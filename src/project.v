@@ -24,6 +24,6 @@ module tt_um_example (
         .response(uo_out[7:0]),
         .challenge(ui_in[4:0]),
         .reset(rst_n),
-        .ena(en),
+        .ena(en))
         
 endmodule
