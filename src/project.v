@@ -20,5 +20,10 @@ module tt_um_example (
   assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_out = 0;
   assign uio_oe  = 0;
-
+    Top Top( 
+        .response(uo_out[7:0]),
+        .challenge(ui_in[4:0]),
+        .reset(rst_n),
+        .ena(en),
+        
 endmodule
