@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "DEF RO-PUF "      # Project title
-  author:       "Syed Farha Naz, Shivam BHardwaj, Ambika Prashad Shah"      # Your name
+  title:        "Reversible logic based Ring-Oscillator Physically Unclonable Function (RO-PUF)"      # Project title
+  author:       "Syed Farah Naz, Shivam Bhardwaj, Ambika Prasad Shah"      # Your name
   discord:      "IC-ResQ"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "RO-PUF"      # One line description of what your project does
+  description:  "Reversible logic based Ring-Oscillator Physically Unclonable Function (RO-PUF)"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -22,7 +22,7 @@ pinout:
   # Inputs
   ui[0]: "rst_n"
   ui[1]: "ena"
-  ui[2]: "challenge"
+  ui[2]: "4-bit challenge"
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
@@ -30,7 +30,7 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: "response"
+  uo[0]: "8-bit response"
   uo[1]: ""
   uo[2]: ""
   uo[3]: ""
