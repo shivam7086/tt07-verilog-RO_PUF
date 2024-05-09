@@ -2,7 +2,7 @@
 project:
   title:        "Reversible logic based Ring-Oscillator Physically Unclonable Function (RO-PUF)"      # Project title
   author:       "Syed Farah Naz, Shivam Bhardwaj, Ambika Prasad Shah"      # Your name
-  discord:      "IC-ResQ"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  discord:      "IC-ResQ Lab"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Reversible logic based Ring-Oscillator Physically Unclonable Function (RO-PUF)"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
@@ -22,22 +22,22 @@ pinout:
   # Inputs
   ui[0]: "rst_n"
   ui[1]: "ena"
-  ui[2]: "4-bit challenge"
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
+  ui[2]: " Challenge_1"
+  ui[3]: "Challenge_2"
+  ui[4]: "Challenge_3"
+  ui[5]: "Challenge_4"
   ui[6]: ""
   ui[7]: ""
 
   # Outputs
-  uo[0]: "8-bit response"
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "Respose_1"
+  uo[1]: "Respose_2"
+  uo[2]: "Respose_3"
+  uo[3]: "Respose_4"
+  uo[4]: "Respose_5"
+  uo[5]: "Respose_6"
+  uo[6]: "Respose_7"
+  uo[7]: "Respose_8"
 
   # Bidirectional pins
   uio[0]: ""
