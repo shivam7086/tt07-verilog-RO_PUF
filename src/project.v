@@ -24,7 +24,7 @@ module tt_um_example (
 wire [7:0] count1, count2;
         top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
         top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
-    comp uut3(count1, count2, ui_out[7:0]);
+    comp uut3(count1, count2, ui_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
