@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-RO-PUF stand for ring oscillator physcial unclonable fuction, In this design ring ocillator used for making PUF.
+Protecting data and hardware is vital, driving the adoption of Physically Unclonable Functions (PUFs) for generating unique circuit signatures. We have introduced a fault-tolerant system featuring a ring-oscillator (RO) based PUF, utilizing a reversible logic (RL) design. The proposed system comprises of Fault-Tolerant RL-based inverter design and the Reversible RO-PUF module. The proposed design also passed 15 NIST tests against conventional RO-PUF. We have also tested the resilience of different PUF designs against three machine-learning models.
 
 ## How to test
 
-I test this verilog code by ORFS
+We have tested the design on Vivado and OpenRoad Flow Script.
 
 ## External hardware
 
