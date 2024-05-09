@@ -22,7 +22,7 @@ pinout:
   # Inputs
   ui[0]: "rst_n"
   ui[1]: "ena"
-  ui[2]: " Challenge_1"
+  ui[2]: "Challenge_1"
   ui[3]: "Challenge_2"
   ui[4]: "Challenge_3"
   ui[5]: "Challenge_4"
