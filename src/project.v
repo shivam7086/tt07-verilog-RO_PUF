@@ -24,7 +24,7 @@ module tt_um_example (
 wire [7:0] count1, count2;
         top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
         top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
-    comp uut3(count1, count2, ui_out);
+    comp uut3(count1, count2, uo_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
@@ -133,7 +133,7 @@ endmodule
 module comp(
     input [7:0] count1,
     input [7:0] count2,
-    output reg[7:0] ui_out
+    output reg[7:0] uo_out
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
@@ -142,11 +142,11 @@ module comp(
         begin
             if(&count1 > &count2)
                 begin
-                    ui_out <= count1;
+                    uo_out <= count1;
                 end
             else
                 begin
-                    ui_out <= count2;
+                    uo_out <= count2;
                 end
         end
         
