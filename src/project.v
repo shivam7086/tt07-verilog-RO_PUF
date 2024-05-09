@@ -57,14 +57,14 @@ generate
     end
 endgenerate
 
-mux32 uut(i, sel, mux_out);
+mux32 uut(i, ui_in, mux_out);
 
         counter c(mux_out, rst_n, count);  
 endmodule
 
 module mux32(
     input wire[16:1] i,
-    input wire[3:0] sel,
+    input wire[3:0] ui_in,
     output reg m_out
     );
    
@@ -72,7 +72,7 @@ module mux32(
     always @(*)
 
     begin
-    case(sel)
+    case(ui_in)
         5'b0000: m_out=i[1];
         5'b0001: m_out=i[2];
         5'b0010: m_out=i[3];
