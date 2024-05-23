@@ -134,6 +134,8 @@ module comp(
     input [7:0] count1,
     input [7:0] count2,
     output reg[7:0] uo_out
+   output reg[7:0] uo_out
+  
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
