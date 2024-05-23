@@ -17,7 +17,7 @@ module tt_um_PUF (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uo_out1  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
   // assign uio_out = 0;
   assign uio_oe  = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
@@ -144,11 +144,11 @@ module comp(
         begin
             if(&count1 > &count2)
                 begin
-                    uo_out <= count1;
+                    uo_out1 <= count1;
                 end
             else
                 begin
-                    uo_out <= count2;
+                    uo_out1 <= count2;
                 end
         end
         
