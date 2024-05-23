@@ -133,7 +133,7 @@ endmodule
 module comp(
     input [15:0] count1,
     input [15:0] count2,
-    output reg[15:0] uo_out1
+    output reg[15:0] uo_out
    
   
     );
@@ -144,11 +144,11 @@ module comp(
         begin
             if(&count1 > &count2)
                 begin
-                    uo_out1 <= count1;
+                    uo_out <= count1;
                 end
             else
                 begin
-                    uo_out1 <= count2;
+                    uo_out <= count2;
                 end
         end
         
