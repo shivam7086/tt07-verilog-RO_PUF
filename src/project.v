@@ -17,14 +17,14 @@ module tt_um_PUF (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out1  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uo_out  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
   // assign uio_out = 0;
   assign uio_oe  = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
     wire [15:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
     top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
-    comp uut3(count1, count2, uo_out1);
+    comp uut3(count1, count2, uo_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
@@ -63,7 +63,7 @@ mux32 uut(i, ui_in, mux_out);
 endmodule
 
 module mux32(
-    input wire[32:1] i,
+    input wire[16:1] i,
     input wire[4:0] ui_in,
     output reg m_out
     );
@@ -73,38 +73,38 @@ module mux32(
 
     begin
     case(ui_in)
-        5'b00000: m_out=i[1];
-        5'b00001: m_out=i[2];
-        5'b00010: m_out=i[3];
-        5'b00011: m_out=i[4];
-        5'b00100: m_out=i[5];
-        5'b00101: m_out=i[6];
-        5'b00110: m_out=i[7];
-        5'b00111: m_out=i[8];
-        5'b01000: m_out=i[9];
-        5'b01001: m_out=i[10];
-        5'b01010: m_out=i[11];
-        5'b01011: m_out=i[12];
-        5'b01100: m_out=i[13];
-        5'b01101: m_out=i[14];
-        5'b01110: m_out=i[15];
-        5'b01111: m_out=i[16];
-       5'b10000: m_out=i[17];
-       5'b10001: m_out=i[18];
-       5'b10010: m_out=i[19];
-        5'b10011: m_out=i[20];
-        5'b10100: m_out=i[21];
-        5'b10101: m_out=i[22];
-        5'b10110: m_out=i[23];
-        5'b10111: m_out=i[24];
-        5'b11000: m_out=i[25];
-        5'b11001: m_out=i[26];
-        5'b11010: m_out=i[27];
-        5'b11011: m_out=i[28];
-        5'b11100: m_out=i[29];
-        5'b11101: m_out=i[30];
-        5'b11110: m_out=i[31];
-        5'b11111: m_out=i[32];
+        4'b0000: m_out=i[1];
+        4'b0001: m_out=i[2];
+        4'b0010: m_out=i[3];
+        5'b0011: m_out=i[4];
+        4'b0100: m_out=i[5];
+        4'b0101: m_out=i[6];
+        4'b0110: m_out=i[7];
+        4'b0111: m_out=i[8];
+        4'b1000: m_out=i[9];
+        4'b1001: m_out=i[10];
+        4'b1010: m_out=i[11];
+        4'b1011: m_out=i[12];
+        4'b1100: m_out=i[13];
+        4'b1101: m_out=i[14];
+        4'b1110: m_out=i[15];
+        'b1111: m_out=i[16];
+       // 5'b10000: m_out=i[17];
+       // 5'b10001: m_out=i[18];
+       // 5'b10010: m_out=i[19];
+       //  5'b10011: m_out=i[20];
+       //  5'b10100: m_out=i[21];
+       //  5'b10101: m_out=i[22];
+       //  5'b10110: m_out=i[23];
+       //  5'b10111: m_out=i[24];
+       //  5'b11000: m_out=i[25];
+       //  5'b11001: m_out=i[26];
+       //  5'b11010: m_out=i[27];
+       //  5'b11011: m_out=i[28];
+       //  5'b11100: m_out=i[29];
+       //  5'b11101: m_out=i[30];
+       //  5'b11110: m_out=i[31];
+       //  5'b11111: m_out=i[32];
     endcase  
     end
 endmodule
