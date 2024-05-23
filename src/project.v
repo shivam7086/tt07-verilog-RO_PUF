@@ -112,11 +112,11 @@ endmodule
 module counter(
     input m_out,
     input rst_n,
-    output reg[7:0] count
+    output reg[15:0] count
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=7'h00;
+    initial count=15'h00;
     always @(posedge m_out or posedge rst_n)
     begin
         if(rst_n)
@@ -131,9 +131,9 @@ module counter(
 endmodule
 
 module comp(
-    input [7:0] count1,
-    input [7:0] count2,
-    output reg[7:0] uo_out1
+    input [15:0] count1,
+    input [15:0] count2,
+    output reg[15:0] uo_out1
    
   
     );
