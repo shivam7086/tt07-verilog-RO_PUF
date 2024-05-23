@@ -144,11 +144,11 @@ module comp(
         begin
             if(&count1 > &count2)
                 begin
-                    uo_out <= count1;
+                    uo_out1 <= count1;
                 end
             else
                 begin
-                    uo_out <= count2;
+                    uo_out1 <= count2;
                 end
         end
         
