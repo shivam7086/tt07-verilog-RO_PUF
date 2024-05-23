@@ -21,7 +21,7 @@ module tt_um_PUF (
   // assign uio_out = 0;
   assign uio_oe  = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
-wire [7:0] count1, count2;
+    wire [15:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
     top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
     comp uut3(count1, count2, uo_out1);
@@ -45,12 +45,12 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input ena, rst_n, input [4:0] ui_in); // make change input [4:0]
-    wire [31:0] i;
+module top_f2g (output [15:0] count, input ena, rst_n, input [4:0] ui_in); // make change input [4:0]
+    wire [15:0] i;
 wire mux_out;
 genvar x;     
 generate
-    for(x=0; x<32; x=x+1)
+    for(x=0; x<16; x=x+1)
     begin
         (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
         osc_f2g f0(i[x], ena);
@@ -116,7 +116,7 @@ module counter(
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=15'h00;
+    initial count=15'h0000;
     always @(posedge m_out or posedge rst_n)
     begin
         if(rst_n)
