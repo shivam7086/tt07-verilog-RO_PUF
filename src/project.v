@@ -22,8 +22,8 @@ module tt_um_PUF (
   assign uio_oe  = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
     wire [15:0] count1, count2;
-    top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
-    top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
+    top_f2g uut1(count1, ena, rst_n, ui_in[3:0]);
+    top_f2g uut2(count2, ena, rst_n, ui_in[3:0]);
     comp uut3(count1, count2, uo_out);
 endmodule
 
@@ -45,7 +45,7 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [15:0] count, input ena, rst_n, input [4:0] ui_in); // make change input [4:0]
+module top_f2g (output [15:0] count, input ena, rst_n, input [3:0] ui_in); // make change input [4:0]
     wire [15:0] i;
 wire mux_out;
 genvar x;     
@@ -64,7 +64,7 @@ endmodule
 
 module mux32(
     input wire[16:1] i,
-    input wire[4:0] ui_in,
+    input wire[3:0] ui_in,
     output reg m_out
     );
    
