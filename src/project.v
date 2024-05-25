@@ -134,7 +134,7 @@ endmodule
 module comp(
     input [31:0] count1,
     input [31:0] count2,
-    output reg[15:0] uo_out
+    output reg[7:0] uo_out
    
   
     );
