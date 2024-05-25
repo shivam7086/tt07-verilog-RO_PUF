@@ -30,7 +30,7 @@ module tt_um_PUF (
     wire [31:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
     top_f2g uut2(count2, ena, rst_n, ui_in[9:5]);
-    comp uut3(count1, count2, uo_out);
+    comp uut3(count1, count2, uo_out,uio_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
@@ -137,9 +137,10 @@ module counter(
 endmodule
 
 module comp(
-    input [31:0] count1,
-    input [31:0] count2,
+    input [7:0] count1,
+    input [7:0] count2,
     output reg[7:0] uo_out
+    output reg[7:0] uio_out
    
   
     );
@@ -154,7 +155,7 @@ module comp(
                 end
             else
                 begin
-                    uo_out <= count2;
+                    uio_out <= count2;
                 end
         end
         
