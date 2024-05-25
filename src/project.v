@@ -21,36 +21,10 @@ module tt_um_PUF (
     //assign ui_in= ui_in + uio_in; // Example: ou_out is the sum of ui_in and uio_in
   // assign uio_out = 0;
     output reg [15:0] u_out
-
-    always @ (posedge uo_out or posedge uio_out)
-begin
-    integer i;
-    for (i = 0; i < 8; i = i + 1) begin
-        if (uo_out[i] == 1'b1) begin
-           uio_out[i] <= uo_out[i];
-        end
-        else begin
-            u_out[i] <=uio_out[i];
-        end
-    end
-end
-
+    u_out = uo_out + uio_out;
     input reg [15:0] u_in
+    u_in =  ui_in + uio_in;
 
-    always @ (posedge ui_in or posedge uio_in)
-begin
-    integer i;
-    for (i = 0; i < 8; i = i + 1) begin
-        if (ui_in[i] == 1'b1) begin
-            uio_in[i] <= u_in[i];
-        end
-        else begin
-            u_in[i] <=uio_in[i];
-        end
-    end
-end
-
-  
   assign uio_oe  = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
     wire [31:0] count1, count2;
