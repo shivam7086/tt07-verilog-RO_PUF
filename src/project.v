@@ -20,9 +20,9 @@ module tt_um_PUF (
       //assign uo_out = uo_out + uio_out;
     //assign ui_in= ui_in + uio_in; // Example: ou_out is the sum of ui_in and uio_in
   // assign uio_out = 0;
-    output reg [15:0] u_out
+    output reg [15:0] u_out;
     u_out = uo_out + uio_out;
-    input reg [15:0] u_in
+    input reg [15:0] u_in;
     u_in =  ui_in + uio_in;
 
   assign uio_oe  = 0;
