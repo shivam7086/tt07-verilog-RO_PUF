@@ -51,12 +51,12 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [31:0] count, input ena, rst_n, input [4:0] ui_in); // make change input [4:0]
-    wire [31:0] i;
+module top_f2g (output [7:0] count, input ena, rst_n, input [4:0] ui_in); // make change input [4:0]
+    wire [7:0] i;
 wire mux_out;
 genvar x;     
 generate
-    for(x=0; x<32; x=x+1)
+    for(x=0; x<7; x=x+1)
     begin
         (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
         osc_f2g f0(i[x], ena);
