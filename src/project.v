@@ -69,7 +69,7 @@ mux32 uut(i, ui_in, mux_out);
 endmodule
 
 module mux32(
-    input wire[32:1] i,
+    input wire[8:1] i,
     input wire[4:0] ui_in,
     output reg m_out
     );
