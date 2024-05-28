@@ -31,7 +31,7 @@ module tt_um_PUF (
   //assign  uio_out=0;
   assign uio_oe = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
-    wire [16:0] count1, count2;
+    wire [15:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, ui_in[3:0]);
     top_f2g uut2(count2, ena, rst_n, ui_in[6:4]);
     comp uut3(count1, count2, Uout);
