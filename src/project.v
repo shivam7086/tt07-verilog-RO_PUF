@@ -50,7 +50,7 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input ena, rst_n, input [4:0] sel);
+module top_f2g (output [7:0] count, input ena, rst_n, input [2:0] sel);
 wire [7:0] i;
 wire mux_out;
 genvar x;
