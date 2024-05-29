@@ -55,7 +55,7 @@ wire [7:0] i;
 wire mux_out;
 genvar x;
 generate
-    for(x=0; x<7; x=x+1)
+    for(x=0; x<32; x=x+1)
     begin
         (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
         osc_f2g f0(i[x], ena);
