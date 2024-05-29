@@ -60,7 +60,7 @@ module top_f2g (output [15:0] count, input ena, rst_n, input [3:0] Uin); // make
 wire mux_out;
 genvar x;     
 generate
-    for(x=0; x<7; x=x+1)
+    for(x=0; x<16; x=x+1)
     begin
         (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
         osc_f2g f0(i[x], ena);
@@ -126,7 +126,7 @@ module counter(
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=32'h00000;
+    initial count=16'h0000;
     always @(posedge m_out or posedge rst_n)
     begin
         if(rst_n)
