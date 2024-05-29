@@ -50,8 +50,8 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input ena, rst_n, input sel[4:0]);
-wire [7:0] i;
+module top_f2g (output [7:0] count, input ena, rst_n, input ui_in[4:0]);
+    wire [31:0] i;
 wire mux_out;
 genvar x;
 generate
@@ -62,14 +62,14 @@ generate
     end
 endgenerate
 
-    mux32 uut(i, sel, mux_out);
+    mux32 uut(i, ui_in, mux_out);
 
     counter c(mux_out, rst_n, count);  
 endmodule
 
 module mux32(
     input wire[32:1] i,
-    input wire[4:0] sel,
+    input wire[4:0] ui_in,
     output reg m_out
     );
    
@@ -77,7 +77,7 @@ module mux32(
     always @(*)
 
     begin
-        case(sel)
+        case(ui_in)
         5'b00000: m_out=i[1];
         5'b00001: m_out=i[2];
         5'b00010: m_out=i[3];
