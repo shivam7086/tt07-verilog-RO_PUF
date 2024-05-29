@@ -25,6 +25,9 @@ module tt_um_PUF (
  
     .challenge(ui_in),
     .response(uo_out),
+    .en(ena),
+    .reset(rst_n),
+    
 // module Top (output [7:0] response, input en, reset, input [4:0] challenge);
 wire [7:0] count1, count2;
 top_f2g uut1(count1, en, reset, challenge[4:0]);
