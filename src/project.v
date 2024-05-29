@@ -121,7 +121,7 @@ module counter(
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=7'h00;
+    initial count=8'h00;
     always @(posedge m_out or posedge rst_n)
     begin
         if(rst_n)
