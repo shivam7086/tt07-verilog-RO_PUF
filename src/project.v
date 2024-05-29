@@ -50,7 +50,7 @@ f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input ena, rst_n, input [2:0] sel);
+module top_f2g (output [7:0] count, input ena, rst_n, input ui_in[4:0]);
 wire [7:0] i;
 wire mux_out;
 genvar x;
@@ -62,14 +62,14 @@ generate
     end
 endgenerate
 
-mux32 uut(i, sel, mux_out);
+    mux32 uut(i, ui_in, mux_out);
 
     counter c(mux_out, rst_n, count);  
 endmodule
 
 module mux32(
-    input wire[8:1] i,
-    input wire[2:0] sel,
+    input wire[32:1] i,
+    input wire[4:0] ui_in,
     output reg m_out
     );
    
@@ -77,39 +77,39 @@ module mux32(
     always @(*)
 
     begin
-    case(sel)
-        3'b000: m_out=i[1];
-        3'b001: m_out=i[2];
-        3'b010: m_out=i[3];
-        3'b011: m_out=i[4];
-        3'b100: m_out=i[5];
-        3'b101: m_out=i[6];
-        3'b110: m_out=i[7];
-        3'b111: m_out=i[8];
-        // 5'b01000: m_out=i[9];
-        // 5'b01001: m_out=i[10];
-        // 5'b01010: m_out=i[11];
-        // 5'b01011: m_out=i[12];
-        // 5'b01100: m_out=i[13];
-        // 5'b01101: m_out=i[14];
-        // 5'b01110: m_out=i[15];
-        // 5'b01111: m_out=i[16];
-        // 5'b10000: m_out=i[17];
-        // 5'b10001: m_out=i[18];
-        // 5'b10010: m_out=i[19];
-        // 5'b10011: m_out=i[20];
-        // 5'b10100: m_out=i[21];
-        // 5'b10101: m_out=i[22];
-        // 5'b10110: m_out=i[23];
-        // 5'b10111: m_out=i[24];
-        // 5'b11000: m_out=i[25];
-        // 5'b11001: m_out=i[26];
-        // 5'b11010: m_out=i[27];
-        // 5'b11011: m_out=i[28];
-        // 5'b11100: m_out=i[29];
-        // 5'b11101: m_out=i[30];
-        // 5'b11110: m_out=i[31];
-        // 5'b11111: m_out=i[32];
+        case(ui_in)
+        5'b00000: m_out=i[1];
+        5'b00001: m_out=i[2];
+        5'b00010: m_out=i[3];
+        5'b00011: m_out=i[4];
+        5'b00100: m_out=i[5];
+        5'b00101: m_out=i[6];
+        5'b00110: m_out=i[7];
+        5'b00111: m_out=i[8];
+        5'b01000: m_out=i[9];
+        5'b01001: m_out=i[10];
+        5'b01010: m_out=i[11];
+        5'b01011: m_out=i[12];
+        5'b01100: m_out=i[13];
+        5'b01101: m_out=i[14];
+        5'b01110: m_out=i[15];
+        5'b01111: m_out=i[16];
+        5'b10000: m_out=i[17];
+        5'b10001: m_out=i[18];
+        5'b10010: m_out=i[19];
+        5'b10011: m_out=i[20];
+        5'b10100: m_out=i[21];
+        5'b10101: m_out=i[22];
+        5'b10110: m_out=i[23];
+        5'b10111: m_out=i[24];
+        5'b11000: m_out=i[25];
+        5'b11001: m_out=i[26];
+        5'b11010: m_out=i[27];
+        5'b11011: m_out=i[28];
+        5'b11100: m_out=i[29];
+        5'b11101: m_out=i[30];
+        5'b11110: m_out=i[31];
+        5'b11111: m_out=i[32];
     endcase  
     end
 endmodule
@@ -121,7 +121,7 @@ module counter(
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=8'h00;
+    initial count=7'h00;
     always @(posedge m_out or posedge rst_n)
     begin
         if(rst_n)
