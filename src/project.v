@@ -26,16 +26,16 @@ module tt_um_PUF (
   // wire _unused = &{ena, clk, rst_n, 1'b0};
 
 // module top (output [7:0] response, input en, reset, input [9:0] challenge);
-wire [7:0] count1, count2;
-    top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
-    top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
-    comp uut3(count1, count2, uo_out);
+    wire [7:0] count1, count2;
+    top_f2g uut1(count1, ena,  rst_n, ui_in[4:0]);
+    top_f2g uut2(count2, ena,  rst_n, ui_in[4:0]);
+comp uut3(count1, count2, uo_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
 assign p=a;
 assign q=a^b;
-assign r=a^c;  
+assign r=a^c;   
 endmodule
 
 module osc_f2g (output out, input ena);
@@ -46,12 +46,12 @@ f2g g1(p[1], q[1], r[1], r[0], 1'b1, 1'b1);
 f2g g2(p[2], q[2], r[2], q[1], 1'b1, 1'b1);
 f2g g3(p[3], q[3], r[3], r[2], 1'b1, 1'b1);
 f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
-    and a0(out, ena, r[4]);
+and a0(out, ena, r[4]);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input ena, rst_n, input ui_in[4:0]);
-    wire [31:0] i;
+module top_f2g (output [7:0] count, input ena,  rst_n, input [4:0] ui_in);
+wire [31:0] i;
 wire mux_out;
 genvar x;
 generate
@@ -62,22 +62,23 @@ generate
     end
 endgenerate
 
-    mux32 uut(i, ui_in, mux_out);
+mux32 uut(i, ui_in, mux_out);
 
-    counter c(mux_out, rst_n, count);  
+counter c(mux_out,  rst_n, count);   
 endmodule
+
 
 module mux32(
     input wire[32:1] i,
     input wire[4:0] ui_in,
     output reg m_out
     );
-   
+    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
     always @(*)
 
     begin
-        case(ui_in)
+    case(ui_in)
         5'b00000: m_out=i[1];
         5'b00001: m_out=i[2];
         5'b00010: m_out=i[3];
@@ -110,21 +111,21 @@ module mux32(
         5'b11101: m_out=i[30];
         5'b11110: m_out=i[31];
         5'b11111: m_out=i[32];
-    endcase  
+    endcase   
     end
 endmodule
 
 module counter(
     input m_out,
-    input rst_n,
+    input  rst_n,
     output reg[7:0] count
     );
-   
+    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-    initial count=7'h00;
-    always @(posedge m_out or posedge rst_n)
+    initial count=8'h00;
+    always @(posedge m_out or posedge  rst_n)
     begin
-        if(rst_n)
+        if( rst_n)
             begin
                 count = 0;
             end
@@ -140,9 +141,9 @@ module comp(
     input [7:0] count2,
     output reg[7:0] uo_out
     );
-   
+    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-   
+    
     always @(count1 or count2)
         begin
             if(&count1 > &count2)
@@ -154,8 +155,4 @@ module comp(
                     uo_out <= count2;
                 end
         end
-
-
-
-
 endmodule
