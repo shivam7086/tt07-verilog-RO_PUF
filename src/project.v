@@ -20,8 +20,8 @@ module tt_um_PUF (
   // All output pins must be assigned. If not used, assign to 0.
       //assign uo_out = uo_out + uio_out;
     //assign ui_in= ui_in + uio_in; // Example: ou_out is the sum of ui_in and uio_in
-   assign uio_out = 0;
-    assign uio_in =0;
+  assign uio_out = 0;
+  assign uio_oe  = 0;
     // output reg [15:0] u_out;
     // u_out = uo_out + uio_out;
     // input reg [15:0] u_in;
@@ -37,7 +37,7 @@ module tt_um_PUF (
     // end
     // assign Uin = ui_in + uio_in; 
   //assign  uio_out=0;
-  assign uio_oe = 0;
+
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
     wire [7:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, ui_in[3:0]);
