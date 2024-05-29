@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2024 Your Name
  * SPDX-License-Identifier: Apache-2.0
@@ -5,7 +6,7 @@
 
 `default_nettype none
 
-module tt_um_PUF (
+module tt_um_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -13,22 +14,21 @@ module tt_um_PUF (
     output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
     input  wire       ena,      // always 1 when the design is powered, so you can ignore it
     input  wire       clk,      // clock
-    input  wire       rst_n // reset_n - low to reset
-
+    input  wire       rst_n     // reset_n - low to reset
 );
-  
+
   // All output pins must be assigned. If not used, assign to 0.
-      //assign uo_out = uo_out + uio_out;
-    //assign ui_in= ui_in + uio_in; // Example: ou_out is the sum of ui_in and uio_in
+  // assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_out = 0;
   assign uio_oe  = 0;
- 
-    
-    
-// module Top (output [7:0] response, input en, reset, input [4:0] challenge);
+
+  // List all unused inputs to prevent warnings
+  // wire _unused = &{ena, clk, rst_n, 1'b0};
+
+// module top (output [7:0] response, input en, reset, input [9:0] challenge);
 wire [7:0] count1, count2;
-    top_f2g uut1(count1, en, rst_n, ui_in[4:0]);
-    top_f2g uut2(count2, ena, rst_n, ui_in[4:0]); 
+    top_f2g uut1(count1, ena, rst_n, ui_in[4:0]);
+    top_f2g uut2(count2, ena, rst_n, ui_in[4:0]);
     comp uut3(count1, count2, uo_out);
 endmodule
 
@@ -68,7 +68,7 @@ mux32 uut(i, sel, mux_out);
 endmodule
 
 module mux32(
-    input wire[32:1] i,
+    input wire[7:1] i,
     input wire[4:0] sel,
     output reg m_out
     );
@@ -122,9 +122,9 @@ module counter(
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
     initial count=7'h00;
-    always @(posedge m_out or posedge reset)
+    always @(posedge m_out or posedge rst_n)
     begin
-        if(rst_n)
+        if(reset)
             begin
                 count = 0;
             end
@@ -154,6 +154,8 @@ module comp(
                     uo_out <= count2;
                 end
         end
-endmodule
-    
+
+
+
+
 endmodule
