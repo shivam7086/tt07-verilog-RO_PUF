@@ -13,11 +13,10 @@ module tt_um_PUF (
     output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
     input  wire       ena,      // always 1 when the design is powered, so you can ignore it
     input  wire       clk,      // clock
-    input  wire       rst_n,    // reset_n - low to reset
-    input wire   [15:0] Uin,
-    output wire  [15:0] Uout
-);
+    input  wire       rst_n // reset_n - low to reset
 
+);
+  
   // All output pins must be assigned. If not used, assign to 0.
       //assign uo_out = uo_out + uio_out;
     //assign ui_in= ui_in + uio_in; // Example: ou_out is the sum of ui_in and uio_in
@@ -41,7 +40,7 @@ module tt_um_PUF (
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
     wire [15:0] count1, count2;
     top_f2g uut1(count1, ena, rst_n, Uin[3:0]);
-    top_f2g uut2(count2, ena, rst_n, Uin[6:3]);
+    top_f2g uut2(count2, ena, rst_n, Uin[3:0]);
     comp uut3(count1, count2, Uout);
 endmodule
 
@@ -152,10 +151,7 @@ module comp(
     input [15:0] count1,
     input [15:0] count2,
     output reg[15:0] Uout
-
-   
-  
-    );
+);
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
    
