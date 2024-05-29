@@ -23,16 +23,13 @@ module tt_um_PUF (
   assign uio_out = 0;
   assign uio_oe  = 0;
  
-    .challenge(ui_in),
-    .response(uo_out),
-    .en(ena),
-    .reset(rst_n),
+    
     
 // module Top (output [7:0] response, input en, reset, input [4:0] challenge);
 wire [7:0] count1, count2;
-top_f2g uut1(count1, en, reset, challenge[4:0]);
-top_f2g uut2(count2, en, reset, challenge[4:0]); 
-comp uut3(count1, count2, response);
+    top_f2g uut1(count1, en, rst_n, ui_in[4:0]);
+    top_f2g uut2(count2, ena, rst_n, ui_in[4:0]); 
+    comp uut3(count1, count2, uo_out);
 endmodule
 
 module f2g (output p, q, r, input a, b, c);
@@ -41,7 +38,7 @@ assign q=a^b;
 assign r=a^c;  
 endmodule
 
-module osc_f2g (output out, input en);
+module osc_f2g (output out, input ena);
 wire [4:0] p, q, r;
 wire A;
 f2g g0(p[0], q[0], r[0], A, 1'b1, 1'b1);
@@ -49,11 +46,11 @@ f2g g1(p[1], q[1], r[1], r[0], 1'b1, 1'b1);
 f2g g2(p[2], q[2], r[2], q[1], 1'b1, 1'b1);
 f2g g3(p[3], q[3], r[3], r[2], 1'b1, 1'b1);
 f2g g4(p[4], q[4], r[4], q[3], 1'b1, 1'b1);
-and a0(out, en, r[4]);
+    and a0(out, ena, r[4]);
 assign A=out;
 endmodule
 
-module top_f2g (output [7:0] count, input en, reset, input [4:0] sel);
+module top_f2g (output [7:0] count, input ena, rst_n, input [4:0] sel);
 wire [7:0] i;
 wire mux_out;
 genvar x;
@@ -67,7 +64,7 @@ endgenerate
 
 mux32 uut(i, sel, mux_out);
 
-counter c(mux_out, reset, count);  
+    counter c(mux_out, rst_n, count);  
 endmodule
 
 module mux32(
@@ -119,7 +116,7 @@ endmodule
 
 module counter(
     input m_out,
-    input reset,
+    input rst_n,
     output reg[7:0] count
     );
    
@@ -127,7 +124,7 @@ module counter(
     initial count=7'h00;
     always @(posedge m_out or posedge reset)
     begin
-        if(reset)
+        if(rst_n)
             begin
                 count = 0;
             end
@@ -141,7 +138,7 @@ endmodule
 module comp(
     input [7:0] count1,
     input [7:0] count2,
-    output reg[7:0] response
+    output reg[7:0] uo_out
     );
    
     (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
@@ -150,11 +147,11 @@ module comp(
         begin
             if(&count1 > &count2)
                 begin
-                    response <= count1;
+                    uo_out <= count1;
                 end
             else
                 begin
-                    response <= count2;
+                    uo_out <= count2;
                 end
         end
 endmodule
