@@ -25,9 +25,15 @@ module tt_um_PUF (
     // input reg [15:0] u_in;
     // u_in =  ui_in + uio_in;
      reg [15:0] Uout;
-    assign Uout  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
+     always @* begin
+         Uout = {uo_out, uio_out}; // Concatenate input1 and input2
+    end
+    // assign Uout  = uo_out + uio_out;  // Example: ou_out is the sum of ui_in and uio_in
     reg [15:0] Uin;
-    assign Uin = ui_in + uio_in; 
+    always @* begin
+        Uin = {ui_in, uio_in}; // Concatenate input1 and input2
+    end
+    // assign Uin = ui_in + uio_in; 
   //assign  uio_out=0;
   assign uio_oe = 0;
 //module Top (output [7:0] ui_out, input ena, rst_n, input [4:0] ui_in);
