@@ -58,7 +58,7 @@ generate
     for(x=0; x<7; x=x+1)
     begin
         (* S= "TRUE"*)(* ALLOW_COMBINATORIAL_LOOPS = "true", KEEP = "true" *)
-        osc_f2g f0(i[x], en);
+        osc_f2g f0(i[x], ena);
     end
 endgenerate
 
@@ -68,7 +68,7 @@ mux32 uut(i, sel, mux_out);
 endmodule
 
 module mux32(
-    input wire[7:1] i,
+    input wire[32:1] i,
     input wire[4:0] sel,
     output reg m_out
     );
