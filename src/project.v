@@ -124,7 +124,7 @@ module counter(
     initial count=7'h00;
     always @(posedge m_out or posedge rst_n)
     begin
-        if(reset)
+        if(rst_n)
             begin
                 count = 0;
             end
